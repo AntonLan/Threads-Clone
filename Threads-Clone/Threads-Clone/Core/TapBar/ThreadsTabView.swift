@@ -12,7 +12,7 @@ struct ThreadsTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Text("Feed View")
+            FeedView()
                 .tabItem {
                     Image(systemName: selectedTab == 0 ? "house.fill" : "house")
                         .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
@@ -21,7 +21,7 @@ struct ThreadsTabView: View {
                     selectedTab = 0
                 }
                 .tag(0)
-            Text("Explorer")
+            ExploreView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                 }
@@ -30,7 +30,7 @@ struct ThreadsTabView: View {
                 }
                 .tag(1)
             
-            Text("Upload Thread")
+            CreateThreadView()
                 .tabItem {
                     Image(systemName: "plus")
                 }
@@ -39,7 +39,7 @@ struct ThreadsTabView: View {
                 }
                 .tag(2)
             
-            Text("Activity")
+            ActivityView()
                 .tabItem {
                     Image(systemName: selectedTab == 3 ? "heart.fill" : "heart")
                         .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
