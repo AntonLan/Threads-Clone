@@ -24,7 +24,11 @@ struct LoginView: View {
                 
                 VStack {
                     TextField("Enter your email", text: $email)
-                    TextField("Enter your password", text: $password)
+                        .autocapitalization(.none)
+                        .modifier(ThreadsTextFieldModifier())
+                    
+                    
+                    SecureField("Enter your password", text: $password)                      .modifier(ThreadsTextFieldModifier())
                 }
                 
                 NavigationLink {
@@ -33,7 +37,7 @@ struct LoginView: View {
                     Text("Forgot passsword")
                         .font(.footnote)
                         .fontWeight(.semibold)
-                        .padding(.top)
+                        .padding(.vertical)
                         .padding(.trailing, 28)
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -52,6 +56,23 @@ struct LoginView: View {
                 }
                 
                 Spacer()
+                
+                Divider()
+                
+                NavigationLink {
+                    RegistrationView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    HStack(spacing: 3) {
+                        Text("Don`t have an account?")
+                        
+                        Text("Sing Up")
+                            .fontWeight(.semibold)
+                    }
+                    .foregroundColor(.black)
+                    .font(.footnote)
+                }
+                .padding(.vertical, 16)
             }
         }
     }
