@@ -18,6 +18,8 @@
 		115B75292B84C79D00CE6717 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B75282B84C79D00CE6717 /* ProfileView.swift */; };
 		115B752D2B84C81600CE6717 /* CreateThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B752C2B84C81600CE6717 /* CreateThreadView.swift */; };
 		115B752F2B84CB0700CE6717 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B752E2B84CB0700CE6717 /* ThreadCell.swift */; };
+		116D72B22B84DC2700AA68C1 /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D72B12B84DC2700AA68C1 /* CircularProfileImageView.swift */; };
+		116D72B42B84DCE600AA68C1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116D72B32B84DCE600AA68C1 /* UserCell.swift */; };
 		11C3FC1C2B84ADAC00518703 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3FC1B2B84ADAC00518703 /* RegistrationView.swift */; };
 		11C3FC1F2B84AFBB00518703 /* ThreadsTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3FC1E2B84AFBB00518703 /* ThreadsTextFieldModifier.swift */; };
 		11C3FC242B84B23B00518703 /* ThreadsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3FC232B84B23B00518703 /* ThreadsTabView.swift */; };
@@ -36,6 +38,8 @@
 		115B75282B84C79D00CE6717 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		115B752C2B84C81600CE6717 /* CreateThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadView.swift; sourceTree = "<group>"; };
 		115B752E2B84CB0700CE6717 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
+		116D72B12B84DC2700AA68C1 /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
+		116D72B32B84DCE600AA68C1 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		11C3FC1B2B84ADAC00518703 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		11C3FC1E2B84AFBB00518703 /* ThreadsTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTextFieldModifier.swift; sourceTree = "<group>"; };
 		11C3FC232B84B23B00518703 /* ThreadsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTabView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			children = (
 				115B751D2B84C6B800CE6717 /* Activity */,
 				1104483A2B84A3C100BB7598 /* Authentication */,
+				116D72B02B84DBD400AA68C1 /* Components */,
 				115B75222B84C70000CE6717 /* Explore */,
 				11C3FC252B84B5F900518703 /* Feed */,
 				115B75262B84C78700CE6717 /* Profile */,
@@ -232,6 +237,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		116D72B02B84DBD400AA68C1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				116D72B12B84DC2700AA68C1 /* CircularProfileImageView.swift */,
+				116D72B32B84DCE600AA68C1 /* UserCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		11C3FC1D2B84AF7900518703 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +354,8 @@
 				115B75292B84C79D00CE6717 /* ProfileView.swift in Sources */,
 				115B752F2B84CB0700CE6717 /* ThreadCell.swift in Sources */,
 				1104483D2B84A42900BB7598 /* LoginView.swift in Sources */,
+				116D72B22B84DC2700AA68C1 /* CircularProfileImageView.swift in Sources */,
+				116D72B42B84DCE600AA68C1 /* UserCell.swift in Sources */,
 				110448242B84A1ED00BB7598 /* ContentView.swift in Sources */,
 				11C3FC242B84B23B00518703 /* ThreadsTabView.swift in Sources */,
 				115B752D2B84C81600CE6717 /* CreateThreadView.swift in Sources */,
