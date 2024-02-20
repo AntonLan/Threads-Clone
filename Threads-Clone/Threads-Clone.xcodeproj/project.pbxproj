@@ -11,6 +11,7 @@
 		110448242B84A1ED00BB7598 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110448232B84A1ED00BB7598 /* ContentView.swift */; };
 		110448262B84A1EE00BB7598 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110448252B84A1EE00BB7598 /* Assets.xcassets */; };
 		110448292B84A1EE00BB7598 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110448282B84A1EE00BB7598 /* Preview Assets.xcassets */; };
+		1104483D2B84A42900BB7598 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1104483C2B84A42900BB7598 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		110448232B84A1ED00BB7598 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		110448252B84A1EE00BB7598 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		110448282B84A1EE00BB7598 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1104483C2B84A42900BB7598 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,12 @@
 		110448202B84A1ED00BB7598 /* Threads-Clone */ = {
 			isa = PBXGroup;
 			children = (
-				110448212B84A1ED00BB7598 /* Threads_CloneApp.swift */,
-				110448232B84A1ED00BB7598 /* ContentView.swift */,
+				110448342B84A32900BB7598 /* App */,
+				1104482F2B84A30800BB7598 /* Core */,
+				110448352B84A37000BB7598 /* Extensions */,
+				110448362B84A38900BB7598 /* Model */,
+				110448372B84A39300BB7598 /* Services */,
+				110448382B84A3A000BB7598 /* Utils */,
 				110448252B84A1EE00BB7598 /* Assets.xcassets */,
 				110448272B84A1EE00BB7598 /* Preview Content */,
 			);
@@ -65,6 +71,75 @@
 				110448282B84A1EE00BB7598 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1104482F2B84A30800BB7598 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1104483A2B84A3C100BB7598 /* Authentication */,
+				110448392B84A3BC00BB7598 /* Root */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		110448342B84A32900BB7598 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				110448212B84A1ED00BB7598 /* Threads_CloneApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		110448352B84A37000BB7598 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		110448362B84A38900BB7598 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		110448372B84A39300BB7598 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		110448382B84A3A000BB7598 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		110448392B84A3BC00BB7598 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				110448232B84A1ED00BB7598 /* ContentView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		1104483A2B84A3C100BB7598 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1104483B2B84A41400BB7598 /* Views */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		1104483B2B84A41400BB7598 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1104483C2B84A42900BB7598 /* LoginView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1104483D2B84A42900BB7598 /* LoginView.swift in Sources */,
 				110448242B84A1ED00BB7598 /* ContentView.swift in Sources */,
 				110448222B84A1ED00BB7598 /* Threads_CloneApp.swift in Sources */,
 			);
