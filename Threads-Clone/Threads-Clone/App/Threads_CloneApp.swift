@@ -23,7 +23,7 @@ struct Threads_CloneApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
         }
     }
 }
