@@ -26,6 +26,7 @@ class AuthService {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
+            try await UserService.shared.fetchCurrentUser()
         } catch {
             print("Debug: failed to create user \(error.localizedDescription)")
         }
@@ -50,6 +51,7 @@ class AuthService {
     func singOut() {
         try? Auth.auth().signOut() // sign out on backend
         self.userSession = nil // remove session localy and update routing
+        UserService.shared.reset() // set current user to nil
     }
     
     
@@ -63,5 +65,6 @@ class AuthService {
         let user = User(id: id, fullName: fullName, email: email, userName: userName)
         guard let userData = try? Firestore.Encoder().encode(user) else { return }
         try await Firestore.firestore().collection("users").document(id).setData(userData)
+        UserService.shared.currentUser = user
     }
 }

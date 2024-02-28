@@ -17,7 +17,6 @@ class UserService {
         Task {
            try await fetchCurrentUser()
         }
-        print(currentUser ?? "fuck")
     }
     
     @MainActor
@@ -28,5 +27,9 @@ class UserService {
         self.currentUser = user
         
         print("DEBUG: User is \(user)")
+    }
+    
+    func reset() {
+        self.currentUser = nil
     }
 }
