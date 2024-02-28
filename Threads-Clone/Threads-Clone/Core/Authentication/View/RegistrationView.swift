@@ -23,6 +23,7 @@ struct RegistrationView: View {
             
             VStack {
                 TextField("Enter your email", text: $viewModel.email)
+                    .autocapitalization(.none)
                     .modifier(ThreadsTextFieldModifier())
                 
                 
@@ -32,6 +33,7 @@ struct RegistrationView: View {
                     .modifier(ThreadsTextFieldModifier())
                 
                 TextField("Enter your user name", text: $viewModel.userName)
+                    .autocapitalization(.none)
                     .modifier(ThreadsTextFieldModifier())
             }
             
@@ -53,7 +55,6 @@ struct RegistrationView: View {
             Divider()
             
             Button {
-                
             } label: {
                 HStack(spacing: 3) {
                     Text("Already have an account?")
