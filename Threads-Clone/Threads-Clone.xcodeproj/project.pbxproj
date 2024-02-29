@@ -44,6 +44,9 @@
 		11C714F02B9099DA00A29288 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C714EF2B9099DA00A29288 /* EditProfileViewModel.swift */; };
 		11C714F22B909E2A00A29288 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C714F12B909E2A00A29288 /* ImageUploader.swift */; };
 		11C714F52B90A9CA00A29288 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 11C714F42B90A9CA00A29288 /* Kingfisher */; };
+		11C714F72B90B45400A29288 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C714F62B90B45400A29288 /* Thread.swift */; };
+		11C714FA2B90B65D00A29288 /* CreateThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C714F92B90B65D00A29288 /* CreateThreadViewModel.swift */; };
+		11C714FC2B90B6A900A29288 /* ThreadSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C714FB2B90B6A900A29288 /* ThreadSevice.swift */; };
 		11F256B52B8DC81900323B18 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F256B42B8DC81900323B18 /* EditProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +84,9 @@
 		11C3FC232B84B23B00518703 /* ThreadsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTabView.swift; sourceTree = "<group>"; };
 		11C714EF2B9099DA00A29288 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		11C714F12B909E2A00A29288 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		11C714F62B90B45400A29288 /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		11C714F92B90B65D00A29288 /* CreateThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadViewModel.swift; sourceTree = "<group>"; };
+		11C714FB2B90B6A900A29288 /* ThreadSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSevice.swift; sourceTree = "<group>"; };
 		11F256B42B8DC81900323B18 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				112A447E2B8F29BD002B0241 /* User.swift */,
+				11C714F62B90B45400A29288 /* Thread.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,6 +192,7 @@
 			children = (
 				112A44802B8F2F53002B0241 /* UserService.swift */,
 				11C714F12B909E2A00A29288 /* ImageUploader.swift */,
+				11C714FB2B90B6A900A29288 /* ThreadSevice.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -357,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				115B752B2B84C80400CE6717 /* View */,
+				11C714F82B90B5F100A29288 /* ViewModel */,
 			);
 			path = ThreadCreation;
 			sourceTree = "<group>";
@@ -423,6 +432,14 @@
 			isa = PBXGroup;
 			children = (
 				11C714EF2B9099DA00A29288 /* EditProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		11C714F82B90B5F100A29288 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				11C714F92B90B65D00A29288 /* CreateThreadViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -527,6 +544,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				115B751C2B84C65800CE6717 /* FeedView.swift in Sources */,
+				11C714F72B90B45400A29288 /* Thread.swift in Sources */,
+				11C714FC2B90B6A900A29288 /* ThreadSevice.swift in Sources */,
 				1118A3612B8DDFD300FE25D8 /* RegistrationViewModel.swift in Sources */,
 				115B75252B84C71A00CE6717 /* ExploreView.swift in Sources */,
 				1118A3632B8DE14200FE25D8 /* AuthService.swift in Sources */,
@@ -539,6 +558,7 @@
 				1104483D2B84A42900BB7598 /* LoginView.swift in Sources */,
 				1118A36D2B8DF3B500FE25D8 /* LoginViewModel.swift in Sources */,
 				112A44952B8F5395002B0241 /* ProfileHeaderView.swift in Sources */,
+				11C714FA2B90B65D00A29288 /* CreateThreadViewModel.swift in Sources */,
 				116D72B22B84DC2700AA68C1 /* CircularProfileImageView.swift in Sources */,
 				116D72B42B84DCE600AA68C1 /* UserCell.swift in Sources */,
 				112A44892B8F492F002B0241 /* ExploreViewModel.swift in Sources */,
