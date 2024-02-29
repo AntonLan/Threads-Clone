@@ -7,16 +7,10 @@
 
 import Observation
 import Combine
-import PhotosUI
-import SwiftUI
 
 @Observable
 final class CurrentUserProfileViewModel {
     var currentUser: User?
-    var selectedItem: PhotosPickerItem? {
-        didSet { Task { await loadImage() } }
-    }
-    var progileImage: Image?
     private var cancellable = Set<AnyCancellable>()
     
     init() {
@@ -28,26 +22,5 @@ final class CurrentUserProfileViewModel {
             self?.currentUser = user
         }
         .store(in: &cancellable)
-    }
-    
-    private func loadImage() async {
-        guard let item = selectedItem else { return }
-        
-        guard let data = try? await item.loadTransferable(type: Data.self) else { return }
-        
-        guard let uiImage = UIImage(data: data) else { return }
-        
-        progileImage = Image(uiImage: uiImage)
-    }
-}
-
-struct CurrentUserProfileViewModelKey: EnvironmentKey {
-    static var defaultValue: CurrentUserProfileViewModel = CurrentUserProfileViewModel()
-}
-
-extension EnvironmentValues {
-    var currentUserProfileViewModel: CurrentUserProfileViewModel {
-        get { self[CurrentUserProfileViewModelKey.self] }
-        set { self[CurrentUserProfileViewModelKey.self] = newValue }
     }
 }

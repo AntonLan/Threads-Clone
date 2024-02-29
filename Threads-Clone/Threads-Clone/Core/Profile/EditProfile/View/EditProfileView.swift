@@ -13,10 +13,9 @@ struct EditProfileView: View {
     @State private var link = ""
     @State private var isPrivateProfile = false
     @Environment(\.dismiss) var dismis
-    @Environment(\.currentUserProfileViewModel) var viewModel: CurrentUserProfileViewModel
+    @State var viewModel = EditProfileViewModel()
     
     var body: some View {
-        @Bindable var viewModel = viewModel
         NavigationStack {
             ZStack {
                 Color(.systemGroupedBackground)
@@ -91,7 +90,10 @@ struct EditProfileView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button ("Done") {
-                        
+                        Task {
+                            try await viewModel.updateUserData()
+                            dismis()
+                        }
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
