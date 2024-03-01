@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ActivityView: View {
     var body: some View {
-        Text("Activity")
+        ThreadsLogoView()
+            .frame(width: 40, height: 40)
     }
 }
 
