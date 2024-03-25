@@ -57,6 +57,9 @@ struct UserContentListView: View {
             }
         }
         .padding(.vertical, 8)
+        .onAppear {
+            Task { try await viewModel.fetchUserThreads() }
+        }
     }
 }
 
