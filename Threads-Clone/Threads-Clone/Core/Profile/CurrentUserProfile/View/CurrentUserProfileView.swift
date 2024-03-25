@@ -55,10 +55,10 @@ struct CurrentUserProfileView: View {
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }
-
                 }
             }
             .padding(.horizontal)
+
         }
     }
 }
