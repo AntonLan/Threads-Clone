@@ -68,3 +68,27 @@ class AuthService {
         UserService.shared.currentUser = user
     }
 }
+
+// MARK: Sing in google
+extension AuthService {
+    
+    func singInWithGoogle(tokkens: GoogleSingInResultModel) async throws {
+        let credential  = GoogleAuthProvider.credential(withIDToken: tokkens.idTocken, accessToken: tokkens.accessToken)
+        try await singIn(credential: credential)
+    }
+    
+    func singIn(credential: AuthCredential) async throws {
+        do {
+            let result = try await Auth.auth().signIn(with: credential)
+            self.userSession = result.user
+            guard let email = userSession?.email else {
+                throw URLError(.badServerResponse)
+            }
+            try await createUser(withEmail: email, password: "", fullName: "", userName: "")
+            try await UserService.shared.fetchCurrentUser()
+        } catch {
+            print("Debug: failed to create user \(error.localizedDescription)")
+        }
+    }
+    
+}
