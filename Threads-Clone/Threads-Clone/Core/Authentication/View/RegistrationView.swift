@@ -55,6 +55,7 @@ struct RegistrationView: View {
             Divider()
             
             Button {
+                dismiss()
             } label: {
                 HStack(spacing: 3) {
                     Text("Already have an account?")

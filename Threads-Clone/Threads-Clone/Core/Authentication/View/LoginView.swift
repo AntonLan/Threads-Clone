@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct LoginView: View {
     @State var viewModel = LoginViewModel()
@@ -55,6 +57,18 @@ struct LoginView: View {
                         .background(.black)
                         .cornerRadius(8)
                 }
+                    
+                GoogleSignInButton(scheme: .dark, style: .standard) {
+                    Task {
+                        do {
+                            try await viewModel.singInGoogle()
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    }
+                
+                
                 
                 Spacer()
                 
