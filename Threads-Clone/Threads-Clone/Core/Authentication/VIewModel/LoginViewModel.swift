@@ -23,20 +23,8 @@ final class LoginViewModel {
     
     @MainActor
     func singInGoogle() async throws {
-        guard let topVc = Utilites.shared.topViewController() else {
-            throw URLError(.cannotFindHost)
-        }
-        
-        let gidSingInResult = try await GIDSignIn.sharedInstance.signIn(withPresenting: topVc)
-        
-        guard let idToken = gidSingInResult.user.idToken?.tokenString else {
-            throw URLError(.badServerResponse)
-        }
-        
-        let accessToken = gidSingInResult.user.accessToken.tokenString
-        
-        let tokens = GoogleSingInResultModel(idTocken: idToken, accessToken: accessToken)
-        
+        let helper = SingINGoogleHelper()
+        let tokens = try await helper.singIn()
         try await AuthService.shared.singInWithGoogle(tokkens: tokens)
     }
     

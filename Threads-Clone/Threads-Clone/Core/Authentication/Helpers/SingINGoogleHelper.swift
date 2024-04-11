@@ -5,9 +5,15 @@
 //  Created by Anton Gerasimov on 11.04.2024.
 //
 
+import GoogleSignIn
+import GoogleSignInSwift
+
 struct GoogleSingInResultModel {
-    var idTocken: String
+    var idToken: String
     var accessToken: String
+    var fullName: String
+    var email: String
+    var userName: String
 }
 
 final class SingINGoogleHelper {
@@ -26,7 +32,20 @@ final class SingINGoogleHelper {
         
         let accessToken = gidSingInResult.user.accessToken.tokenString
         
-        let tokens = GoogleSingInResultModel(idTocken: idToken, accessToken: accessToken)
+        guard let fullName = gidSingInResult.user.profile?.name else {
+            throw URLError(.badServerResponse)
+        }
+        
+        guard let email = gidSingInResult.user.profile?.email else {
+            throw URLError(.badServerResponse)
+        }
+        
+        guard let userName = gidSingInResult.user.profile?.familyName else {
+            throw URLError(.badServerResponse)
+        }
+
+
+        let tokens = GoogleSingInResultModel(idToken: idToken, accessToken: accessToken, fullName: fullName, email: email, userName: userName)
         
         return tokens
     }

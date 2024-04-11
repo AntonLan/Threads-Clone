@@ -8,6 +8,12 @@
 import Firebase
 import FirebaseFirestoreSwift
 
+
+enum AuthProviderOption: String {
+    case email = "password"
+    case google = "google.com"
+}
+
 class AuthService {
     
     @Published var userSession: FirebaseAuth.User?
@@ -16,6 +22,22 @@ class AuthService {
     
     init() {
         self.userSession = Auth.auth().currentUser
+    }
+    
+    func getProvider() throws -> [AuthProviderOption] {
+        guard let providerData = Auth.auth().currentUser?.providerData else {
+            throw URLError(.badServerResponse)
+        }
+        var providers: [AuthProviderOption] = []
+        for provider in providerData {
+            if let option = AuthProviderOption(rawValue: provider.providerID) {
+                providers.append(option)
+            } else {
+                assertionFailure("Provider option not found: \(provider.providerID)")
+            }
+        }
+        
+        return providers
     }
     
     @MainActor
@@ -73,19 +95,30 @@ class AuthService {
 extension AuthService {
     
     func singInWithGoogle(tokkens: GoogleSingInResultModel) async throws {
-        let credential  = GoogleAuthProvider.credential(withIDToken: tokkens.idTocken, accessToken: tokkens.accessToken)
+        let credential  = GoogleAuthProvider.credential(withIDToken: tokkens.idToken, accessToken: tokkens.accessToken)
         try await singIn(credential: credential)
+        
+        let users = try await UserService.getAllUsers()
+        
+        for user in users {
+            
+            print("User \(user.userName)")
+            if user.id != userSession?.uid {
+                let user = User(id: tokkens.idToken, fullName: tokkens.fullName, email: tokkens.email, userName: tokkens.userName)
+                print("check")
+                guard let id = userSession?.uid else { throw URLError(.badServerResponse) }
+                guard let userData = try? Firestore.Encoder().encode(user) else { return }
+                try await Firestore.firestore().collection("users").document(id).setData(userData)
+            }
+        }
+        
+        try await UserService.shared.fetchCurrentUser()
     }
     
     func singIn(credential: AuthCredential) async throws {
         do {
             let result = try await Auth.auth().signIn(with: credential)
             self.userSession = result.user
-            guard let email = userSession?.email else {
-                throw URLError(.badServerResponse)
-            }
-            try await createUser(withEmail: email, password: "", fullName: "", userName: "")
-            try await UserService.shared.fetchCurrentUser()
         } catch {
             print("Debug: failed to create user \(error.localizedDescription)")
         }
