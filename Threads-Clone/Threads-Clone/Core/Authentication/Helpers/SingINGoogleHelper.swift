@@ -12,5 +12,23 @@ struct GoogleSingInResultModel {
 
 final class SingINGoogleHelper {
     
+    @MainActor
+    func singIn() async throws -> GoogleSingInResultModel {
+        guard let topVc = Utilites.shared.topViewController() else {
+            throw URLError(.cannotFindHost)
+        }
+        
+        let gidSingInResult = try await GIDSignIn.sharedInstance.signIn(withPresenting: topVc)
+        
+        guard let idToken = gidSingInResult.user.idToken?.tokenString else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let accessToken = gidSingInResult.user.accessToken.tokenString
+        
+        let tokens = GoogleSingInResultModel(idTocken: idToken, accessToken: accessToken)
+        
+        return tokens
+    }
 
 }
