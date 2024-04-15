@@ -7,6 +7,8 @@
 
 import Firebase
 import FirebaseFirestoreSwift
+import Factory
+import Combine
 
 
 enum AuthProviderOption: String {
@@ -18,7 +20,9 @@ class AuthService {
     
     @Published var userSession: FirebaseAuth.User?
     
-    static let shared = AuthService()
+    static var shared = AuthService()
+    
+//    @Injected(\.userService) private var userService
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -100,19 +104,17 @@ extension AuthService {
         
         let users = try await UserService.getAllUsers()
         
+        guard let id = userSession?.uid else { return }
+        
         for user in users {
-            
-            print("User \(user.userName)")
-            if user.id != userSession?.uid {
-                let user = User(id: tokkens.idToken, fullName: tokkens.fullName, email: tokkens.email, userName: tokkens.userName)
-                print("check")
-                guard let id = userSession?.uid else { throw URLError(.badServerResponse) }
-                guard let userData = try? Firestore.Encoder().encode(user) else { return }
-                try await Firestore.firestore().collection("users").document(id).setData(userData)
+            if user.id != id {
+                try await uploadUserData(withEmail: tokkens.email, fullName: tokkens.fullName, userName: tokkens.userName, id: id)
+            } else {
+                try await UserService.shared.fetchCurrentUser()
             }
         }
         
-        try await UserService.shared.fetchCurrentUser()
+        
     }
     
     func singIn(credential: AuthCredential) async throws {

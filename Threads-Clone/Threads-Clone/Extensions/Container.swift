@@ -8,5 +8,11 @@
 import Factory
 
 extension Container {
-    
+//    var userService: Factory<UserService> {
+//        Factory(self) { UserService() }
+//    }
+//    
+//    var authService: Factory<AuthService> {
+//        Factory(self) { AuthService() }
+//    }
 }
