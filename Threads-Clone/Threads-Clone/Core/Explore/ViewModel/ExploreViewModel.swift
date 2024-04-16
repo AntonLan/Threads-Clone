@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import Factory
 
 @Observable
 final class ExploreViewModel {

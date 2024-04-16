@@ -9,6 +9,7 @@ import Foundation
 import Observation
 import PhotosUI
 import SwiftUI
+import Factory
 
 @Observable
 final class EditProfileViewModel {
@@ -19,6 +20,9 @@ final class EditProfileViewModel {
     
     @ObservationIgnored
     private var uiImage: UIImage?
+    
+    @ObservationIgnored
+    @Injected(\.userService) private var userService
     
     func updateUserData() async throws {
         try await updateProfileImage()
@@ -38,6 +42,6 @@ final class EditProfileViewModel {
     private func updateProfileImage() async throws {
         guard let image = self.uiImage else { return }
         guard let imageUrl = try? await ImageUploader.uploadImage(image) else { return }
-        try await UserService.shared.updateUserProfileImage(withImageUrl: imageUrl)
+        try await userService.updateUserProfileImage(withImageUrl: imageUrl)
     }
 }
