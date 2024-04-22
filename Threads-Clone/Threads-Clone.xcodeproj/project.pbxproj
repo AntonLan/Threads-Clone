@@ -41,6 +41,10 @@
 		115B75292B84C79D00CE6717 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B75282B84C79D00CE6717 /* ProfileView.swift */; };
 		115B752D2B84C81600CE6717 /* CreateThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B752C2B84C81600CE6717 /* CreateThreadView.swift */; };
 		115B752F2B84CB0700CE6717 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115B752E2B84CB0700CE6717 /* ThreadCell.swift */; };
+		115C99CB2BD684DD00D43EF0 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C99CA2BD684DD00D43EF0 /* Tab.swift */; };
+		115C99CD2BD688B000D43EF0 /* MyTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C99CC2BD688B000D43EF0 /* MyTabBar.swift */; };
+		115C99CF2BD68CF900D43EF0 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C99CE2BD68CF900D43EF0 /* View.swift */; };
+		115C99D22BD696EB00D43EF0 /* TapBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115C99D12BD696EB00D43EF0 /* TapBarViewModel.swift */; };
 		116346AF2B91E1FC00A5428D /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116346AE2B91E1FC00A5428D /* UserContentListViewModel.swift */; };
 		116346B12B91F84D00A5428D /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116346B02B91F84D00A5428D /* Timestamp.swift */; };
 		116346B32B92039000A5428D /* ThreadsIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116346B22B92039000A5428D /* ThreadsIcon.swift */; };
@@ -91,6 +95,10 @@
 		115B75282B84C79D00CE6717 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		115B752C2B84C81600CE6717 /* CreateThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadView.swift; sourceTree = "<group>"; };
 		115B752E2B84CB0700CE6717 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
+		115C99CA2BD684DD00D43EF0 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		115C99CC2BD688B000D43EF0 /* MyTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBar.swift; sourceTree = "<group>"; };
+		115C99CE2BD68CF900D43EF0 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		115C99D12BD696EB00D43EF0 /* TapBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBarViewModel.swift; sourceTree = "<group>"; };
 		116346AE2B91E1FC00A5428D /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		116346B02B91F84D00A5428D /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		116346B22B92039000A5428D /* ThreadsIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsIcon.swift; sourceTree = "<group>"; };
@@ -200,6 +208,7 @@
 				112A448A2B8F4B81002B0241 /* PreviewProvider.swift */,
 				116346B02B91F84D00A5428D /* Timestamp.swift */,
 				1153C1932BC7F149009B1781 /* Container.swift */,
+				115C99CE2BD68CF900D43EF0 /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +423,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		115C99C82BD684B400D43EF0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11C3FC232B84B23B00518703 /* ThreadsTabView.swift */,
+				115C99CC2BD688B000D43EF0 /* MyTabBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		115C99C92BD684C300D43EF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				115C99CA2BD684DD00D43EF0 /* Tab.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		115C99D02BD696D300D43EF0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				115C99D12BD696EB00D43EF0 /* TapBarViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		116346AB2B91E1C500A5428D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,7 +504,9 @@
 		11C3FC202B84B1E200518703 /* TapBar */ = {
 			isa = PBXGroup;
 			children = (
-				11C3FC232B84B23B00518703 /* ThreadsTabView.swift */,
+				115C99D02BD696D300D43EF0 /* ViewModel */,
+				115C99C92BD684C300D43EF0 /* Model */,
+				115C99C82BD684B400D43EF0 /* View */,
 			);
 			path = TapBar;
 			sourceTree = "<group>";
@@ -638,7 +674,9 @@
 				112A44812B8F2F53002B0241 /* UserService.swift in Sources */,
 				115B752F2B84CB0700CE6717 /* ThreadCell.swift in Sources */,
 				1104483D2B84A42900BB7598 /* LoginView.swift in Sources */,
+				115C99CD2BD688B000D43EF0 /* MyTabBar.swift in Sources */,
 				1118A36D2B8DF3B500FE25D8 /* LoginViewModel.swift in Sources */,
+				115C99CF2BD68CF900D43EF0 /* View.swift in Sources */,
 				116346AF2B91E1FC00A5428D /* UserContentListViewModel.swift in Sources */,
 				112A44952B8F5395002B0241 /* ProfileHeaderView.swift in Sources */,
 				11C714FA2B90B65D00A29288 /* CreateThreadViewModel.swift in Sources */,
@@ -647,8 +685,10 @@
 				116D72B42B84DCE600AA68C1 /* UserCell.swift in Sources */,
 				11C714FF2B90C16A00A29288 /* FeedViewModel.swift in Sources */,
 				112A44892B8F492F002B0241 /* ExploreViewModel.swift in Sources */,
+				115C99CB2BD684DD00D43EF0 /* Tab.swift in Sources */,
 				110448242B84A1ED00BB7598 /* ContentView.swift in Sources */,
 				11C714F22B909E2A00A29288 /* ImageUploader.swift in Sources */,
+				115C99D22BD696EB00D43EF0 /* TapBarViewModel.swift in Sources */,
 				1195011D2B85153F00388D1F /* ProfileThreadFilter.swift in Sources */,
 				112A44972B8F5571002B0241 /* UserContentListView.swift in Sources */,
 				112A44922B8F5100002B0241 /* CurrentUserProfileViewModel.swift in Sources */,
