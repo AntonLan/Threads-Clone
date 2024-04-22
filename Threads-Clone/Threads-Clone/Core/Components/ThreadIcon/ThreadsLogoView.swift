@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThreadsLogoView: View {
-    @State private var animatableProgress: CGFloat = 0
+    var animatableProgress: CGFloat
     let letterAnimationDuration = 0.5
     let nameTransitionDuration = 0.5
     
@@ -43,14 +43,10 @@ struct ThreadsLogoView: View {
                     )
             }
         }
-        .onAppear {
-            withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)) {
-                animatableProgress = 1
-            }
-        }
+        .frame(width: 40, height: 40)
     }
 }
 
 #Preview {
-    ThreadsLogoView()
+    ThreadsLogoView(animatableProgress: 1.0)
 }
