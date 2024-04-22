@@ -51,7 +51,7 @@ struct CurrentUserProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        AuthService.shared.singOut()
+                        viewModel.singOut()
                     } label: {
                         Image(systemName: "line.3.horizontal")
                     }

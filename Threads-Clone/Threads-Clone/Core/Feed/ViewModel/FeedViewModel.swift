@@ -7,10 +7,12 @@
 
 import Foundation
 import Observation
+import SwiftUI
 
 @Observable
 final class FeedViewModel {
     var threads = [Thread]()
+    var animatableProgress: CGFloat = 0
     
     init() {
         Task {
@@ -33,5 +35,13 @@ final class FeedViewModel {
             
             threads[i].user = threadUser
         }
+    }
+    
+    func detectScroll(geometry: GeometryProxy) -> some View {
+        let yOffset = geometry.frame(in: .named("ScrollView")).minY
+        DispatchQueue.main.async {
+            self.animatableProgress = (yOffset / 100) - 1.07
+        }
+        return Rectangle().fill(Color.clear)
     }
 }

@@ -9,18 +9,22 @@ import Foundation
 import Observation
 import Firebase
 import Combine
+import Factory
 
 @Observable
 final class ContentViewModel {
     var userSession: FirebaseAuth.User?
     private var cancellable = Set<AnyCancellable>()
     
+    @ObservationIgnored
+    @Injected(\.authService) private var authService
+    
     init() {
         setupSubscribers()
     }
     
     private func setupSubscribers() {
-        AuthService.shared.$userSession.sink { [weak self] userSession in
+        authService.$userSession.sink { [weak self] userSession in
             self?.userSession = userSession
         }.store(in: &cancellable)
     }

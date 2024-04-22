@@ -7,15 +7,39 @@
 
 import Firebase
 import FirebaseFirestoreSwift
+import Factory
+import Combine
+
+
+enum AuthProviderOption: String {
+    case email = "password"
+    case google = "google.com"
+}
 
 class AuthService {
     
     @Published var userSession: FirebaseAuth.User?
     
-    static let shared = AuthService()
+    @Injected(\.userService) private var userService
     
     init() {
         self.userSession = Auth.auth().currentUser
+    }
+    
+    func getProvider() throws -> [AuthProviderOption] {
+        guard let providerData = Auth.auth().currentUser?.providerData else {
+            throw URLError(.badServerResponse)
+        }
+        var providers: [AuthProviderOption] = []
+        for provider in providerData {
+            if let option = AuthProviderOption(rawValue: provider.providerID) {
+                providers.append(option)
+            } else {
+                assertionFailure("Provider option not found: \(provider.providerID)")
+            }
+        }
+        
+        return providers
     }
     
     @MainActor
@@ -26,7 +50,7 @@ class AuthService {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
-            try await UserService.shared.fetchCurrentUser()
+            try await userService.fetchCurrentUser()
         } catch {
             print("Debug: failed to create user \(error.localizedDescription)")
         }
@@ -51,7 +75,7 @@ class AuthService {
     func singOut() {
         try? Auth.auth().signOut() // sign out on backend
         self.userSession = nil // remove session localy and update routing
-        UserService.shared.reset() // set current user to nil
+        userService.reset() // set current user to nil
     }
     
     
@@ -65,6 +89,36 @@ class AuthService {
         let user = User(id: id, fullName: fullName, email: email, userName: userName)
         guard let userData = try? Firestore.Encoder().encode(user) else { return }
         try await Firestore.firestore().collection("users").document(id).setData(userData)
-        UserService.shared.currentUser = user
+        userService.currentUser = user
     }
+}
+
+// MARK: Sing in google
+extension AuthService {
+    
+    func singInWithGoogle(tokkens: GoogleSingInResultModel) async throws {
+        let credential  = GoogleAuthProvider.credential(withIDToken: tokkens.idToken, accessToken: tokkens.accessToken)
+        
+        try await singIn(credential: credential)
+        try await checkUser(tokkens: tokkens)
+        try await userService.fetchCurrentUser()
+    }
+    
+    func singIn(credential: AuthCredential) async throws {
+        do {
+            let result = try await Auth.auth().signIn(with: credential)
+            self.userSession = result.user
+        } catch {
+            print("Debug: failed to create google user \(error.localizedDescription)")
+        }
+    }
+    
+    func checkUser(tokkens: GoogleSingInResultModel) async throws {
+        let usersId = try await UserService.getAllUsers().map { $0.id }
+        guard let id = userSession?.uid else { return }
+        if !usersId.contains(id) {
+            try await uploadUserData(withEmail: tokkens.email, fullName: tokkens.fullName, userName: tokkens.userName, id: id)
+        }
+    }
+    
 }

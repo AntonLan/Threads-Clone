@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Factory
 
 struct CreateThreadView: View {
     @State var viewModel = CreateThreadViewModel()
     @State var caption = ""
     @Environment(\.dismiss) var dismiss
+    @Injected(\.userService) private var userService
     
     private var user: User? {
-        return UserService.shared.currentUser
+        return userService.currentUser
     }
     
     var body: some View {

@@ -13,27 +13,23 @@ struct FeedView: View {
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
+                ThreadsLogoView(animatableProgress: viewModel.animatableProgress)
                 LazyVStack {
                     ForEach(viewModel.threads, id: \.id) { thread in
                         ThreadCell(thread: thread)
                     }
                 }
+                .background(GeometryReader { geometry in
+                    viewModel.detectScroll(geometry: geometry)
+                })
             }
-            .refreshable {
-                Task { try await viewModel.fetchThreads() }
-            }
-            .navigationTitle("Threads")
-            .navigationBarTitleDisplayMode(.inline)
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "arrow.counterclockwise")
-                        .foregroundStyle(.black)
-                }
-            }
+        .coordinateSpace(name: "ScrollView")
+        .refreshable {
+            Task { try await viewModel.fetchThreads() }
+        }
+        .onAppear {
+            UIRefreshControl.appearance().tintColor = .clear
         }
     }
 }

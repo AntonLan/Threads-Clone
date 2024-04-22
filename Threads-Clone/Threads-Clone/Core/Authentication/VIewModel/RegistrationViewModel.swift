@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import Factory
 
 @Observable
 final class RegistrationViewModel {
@@ -17,8 +18,11 @@ final class RegistrationViewModel {
     var userName = ""
     
     
+    @ObservationIgnored
+    @Injected(\.authService) private var authService
+    
     @MainActor
     func createUser() async throws {
-        try await AuthService.shared.createUser(withEmail: email, password: password, fullName: fullName, userName: userName)
+        try await authService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName)
     }
 }
