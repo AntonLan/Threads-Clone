@@ -28,6 +28,7 @@ struct ThreadsTabView: View {
                 .setUpTab(.profile)
             
         }
+        .toolbar(.hidden, for: .tabBar)
         .onChange(of: viewModel.activeTab) {
             viewModel.showCreateThreadView = viewModel.activeTab == .plus
         }

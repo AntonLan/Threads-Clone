@@ -24,8 +24,8 @@ struct MyTabBar: View {
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                 .foregroundStyle(viewModel.activeTab == tab ? .black : Color.gray.opacity(0.8))
-                .padding(.top, 15)
-                .padding()
+                .padding(.top, 5)
+                .padding(.bottom, 10)
                 .contentShape(.rect)
                 .onTapGesture {
                     withAnimation(.bouncy, completionCriteria: .logicallyComplete, {
