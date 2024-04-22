@@ -98,21 +98,10 @@ extension AuthService {
     
     func singInWithGoogle(tokkens: GoogleSingInResultModel) async throws {
         let credential  = GoogleAuthProvider.credential(withIDToken: tokkens.idToken, accessToken: tokkens.accessToken)
+        
         try await singIn(credential: credential)
-        
-        let users = try await UserService.getAllUsers()
-        
-        guard let id = userSession?.uid else { return }
-        
-        for user in users {
-            if user.id != id {
-                try await uploadUserData(withEmail: tokkens.email, fullName: tokkens.fullName, userName: tokkens.userName, id: id)
-            } else {
-                try await userService.fetchCurrentUser()
-            }
-        }
-        
-        
+        try await checkUser(tokkens: tokkens)
+        try await userService.fetchCurrentUser()
     }
     
     func singIn(credential: AuthCredential) async throws {
@@ -120,7 +109,15 @@ extension AuthService {
             let result = try await Auth.auth().signIn(with: credential)
             self.userSession = result.user
         } catch {
-            print("Debug: failed to create user \(error.localizedDescription)")
+            print("Debug: failed to create google user \(error.localizedDescription)")
+        }
+    }
+    
+    func checkUser(tokkens: GoogleSingInResultModel) async throws {
+        let usersId = try await UserService.getAllUsers().map { $0.id }
+        guard let id = userSession?.uid else { return }
+        if !usersId.contains(id) {
+            try await uploadUserData(withEmail: tokkens.email, fullName: tokkens.fullName, userName: tokkens.userName, id: id)
         }
     }
     
